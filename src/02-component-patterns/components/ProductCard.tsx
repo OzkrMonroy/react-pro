@@ -1,19 +1,19 @@
 import { createContext } from 'react';
 
 import { useProduct } from '02-component-patterns/hooks/useProduct';
-import styles from '02-component-patterns/styles/styles.module.css';
 import { ProductContextProps, ProductCardProps } from '02-component-patterns/interfaces/productInterfaces';
+import styles from '02-component-patterns/styles/styles.module.css';
 
 export const ProductContext = createContext({} as ProductContextProps);
 const { Provider } = ProductContext;
 
 
-export const ProductCard = ({ product, children }: ProductCardProps) => {
+export const ProductCard = ({ product, children, className }: ProductCardProps) => {
   const { counter, increaseBy } = useProduct();
 
   return (
     <Provider value={{ product, counter, increaseBy }}>
-      <div className={styles.productCard}>
+      <div className={`${styles.productCard} ${className}`}>
         {children}
         {/* <ProductImage img={img} name={name} />
       <ProductTitle name={name} />
