@@ -4,7 +4,7 @@ import { ProductImageProps } from '02-component-patterns/interfaces/productInter
 import noImage from '02-component-patterns/assets/no-image.jpg';
 import styles from '02-component-patterns/styles/styles.module.css';
 
-export const ProductImage = ({img , name, className} : ProductImageProps) => {
+export const ProductImage = ({img , name, className, style} : ProductImageProps) => {
   const { product } = useContext(ProductContext);
   let imageToShow: string;
   let titleForAlt: string;
@@ -26,6 +26,6 @@ export const ProductImage = ({img , name, className} : ProductImageProps) => {
   }
 
   return (
-    <img src={imageToShow} alt={titleForAlt} className={`${styles.productImg} ${className}`} />
+    <img src={imageToShow} alt={titleForAlt} className={`${styles.productImg} ${className}`} style={style}/>
   )
 }

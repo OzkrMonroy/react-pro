@@ -20,9 +20,15 @@ export const ShoppingPage = () => {
         </ProductCard>
 
         <ProductCard product={product} className="bg-dark text-white">
-          <ProductImage className='custom-image'/>
+          <ProductImage className='custom-image' style={{ boxShadow: '10px, 9px, 0, rgba(0, 0, 0, .2)' }}/>
           <ProductTitle className="text-white text-bold"/>
           <ProductButtons className="custom-buttons"/>
+        </ProductCard>
+
+        <ProductCard product={product} style={{ backgroundColor: 'rgb(52, 113, 133)' }}>
+          <ProductImage style={{ boxShadow: '10px, 9px, 0, rgba(0, 0, 0, .2)' }}/>
+          <ProductTitle style={{ fontWeight: 'bold' }}/>
+          <ProductButtons style={{ display: 'flex', justifyContent: 'end' }}/>
         </ProductCard>
       </div>
     </div>
