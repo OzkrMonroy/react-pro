@@ -15,19 +15,11 @@ export const useShoppingCart = () => {
   const onProductCountChange = ({ value, product }: { value: number; product: Product }) => {
     const { id } = product
     setShoppingCart(oldShoppingCart => {
-      const productInCart = oldShoppingCart[id] || { ...product, quantity: 0 };
-      if (Math.max(productInCart.quantity + value, 0) > 0) {
-        productInCart.quantity += value;
-
-        return { ...oldShoppingCart, [id]: productInCart };
+      if (value === 0) {
+        const { [id]: toDelete, ...rest } = oldShoppingCart;
+        return rest;
       }
-      const { [id]: toDelete, ...rest } = oldShoppingCart;
-      return rest;
-      // if (value === 0) {
-      //   const { [id]: toDelete, ...rest } = oldShoppingCart;
-      //   return rest;
-      // }
-      // return { ...oldShoppingCart, [id]: { ...product, quantity: value } }
+      return { ...oldShoppingCart, [id]: { ...product, quantity: value } }
     })
   }
 
