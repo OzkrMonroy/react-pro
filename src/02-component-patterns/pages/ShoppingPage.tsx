@@ -23,12 +23,23 @@ export const ShoppingPage = () => {
           maxCount: 15,
         }}
       >
-        <ProductImage
-          className="custom-image"
-          style={{ boxShadow: "10px, 9px, 0, rgba(0, 0, 0, .2)" }}
-        />
-        <ProductTitle className="text-white text-bold" />
-        <ProductButtons className="custom-buttons" />
+        {({ reset, increaseBy, isMaxCountReached, count }) => (
+          <>
+            <ProductImage
+              className="custom-image"
+              style={{ boxShadow: "10px, 9px, 0, rgba(0, 0, 0, .2)" }}
+            />
+            <ProductTitle className="text-white text-bold" />
+            <ProductButtons className="custom-buttons" />
+
+            <button onClick={reset}>Reset</button>
+            <button onClick={() => increaseBy(-2)}>-2</button>
+            {!isMaxCountReached && (
+              <button onClick={() => increaseBy(2)}>+2</button>
+            )}
+            <span>{count}</span>
+          </>
+        )}
       </ProductCard>
       {/* <div className="shopping-cart">
       </div> */}
