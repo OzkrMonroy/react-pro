@@ -1,15 +1,30 @@
-import { createContext } from 'react';
+import { createContext } from "react";
 
-import { useProduct } from '02-component-patterns/hooks/useProduct';
-import { ProductContextProps, ProductCardProps } from '02-component-patterns/interfaces/productInterfaces';
-import styles from '02-component-patterns/styles/styles.module.css';
+import { useProduct } from "02-component-patterns/hooks/useProduct";
+import {
+  ProductContextProps,
+  ProductCardProps,
+} from "02-component-patterns/interfaces/productInterfaces";
+import styles from "02-component-patterns/styles/styles.module.css";
 
 export const ProductContext = createContext({} as ProductContextProps);
 const { Provider } = ProductContext;
 
-
-export const ProductCard = ({ product, children, className, style, onChange, count }: ProductCardProps) => {
-  const { counter, increaseBy } = useProduct({product, onChange, initialCounter: count});
+export const ProductCard = ({
+  product,
+  children,
+  className,
+  style,
+  onChange,
+  count,
+  initialValues,
+}: ProductCardProps) => {
+  const { counter, increaseBy } = useProduct({
+    product,
+    onChange,
+    initialCounter: count,
+    initialValues,
+  });
 
   return (
     <Provider value={{ product, counter, increaseBy }}>
@@ -20,5 +35,5 @@ export const ProductCard = ({ product, children, className, style, onChange, cou
       <ProductsButtons counter={counter} increaseBy={increaseBy}/> */}
       </div>
     </Provider>
-  )
-}
+  );
+};

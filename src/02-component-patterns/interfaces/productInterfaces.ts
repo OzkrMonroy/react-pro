@@ -1,7 +1,7 @@
-import { CSSProperties, ReactElement } from 'react';
+import { CSSProperties, ReactElement } from "react";
 
 export interface ProductCardHOCProps {
-  (Props: ProductCardProps): JSX.Element,
+  (Props: ProductCardProps): JSX.Element;
   Buttons: (Props: ProductButtonsProps) => JSX.Element;
   Image: (Props: ProductImageProps) => JSX.Element;
   Title: (Props: ProductTitleProps) => JSX.Element;
@@ -14,6 +14,7 @@ export interface ProductCardProps {
   product: Product;
   count?: number;
   onChange?: (args: onChangeArgs) => void;
+  initialValues?: InitialValues;
 }
 export interface Product {
   id: string;
@@ -34,7 +35,10 @@ export interface ProductImageProps {
   style?: CSSProperties;
 }
 
-export interface ProductButtonsProps { className?: string; style?: CSSProperties;}
+export interface ProductButtonsProps {
+  className?: string;
+  style?: CSSProperties;
+}
 export interface ProductContextProps {
   counter: number;
   product: Product;
@@ -44,4 +48,9 @@ export interface ProductContextProps {
 export interface onChangeArgs {
   value: number;
   product: Product;
+}
+
+export interface InitialValues {
+  count?: number;
+  maxCount?: number;
 }

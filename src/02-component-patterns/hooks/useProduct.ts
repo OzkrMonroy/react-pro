@@ -1,27 +1,50 @@
-import { onChangeArgs, Product } from '02-component-patterns/interfaces/productInterfaces';
-import { useEffect, useState } from 'react';
+import {
+  InitialValues,
+  onChangeArgs,
+  Product,
+} from "02-component-patterns/interfaces/productInterfaces";
+import { useEffect, useRef, useState } from "react";
 
 interface UseProductProps {
   product: Product;
   onChange?: (args: onChangeArgs) => void;
   initialCounter?: number;
+  initialValues?: InitialValues;
 }
 
-export const useProduct = ({ product, onChange, initialCounter = 0 }: UseProductProps) => {
-  const [counter, setCounter] = useState(initialCounter);
+export const useProduct = ({
+  product,
+  onChange,
+  initialCounter = 0,
+  initialValues,
+}: UseProductProps) => {
+  const [counter, setCounter] = useState<number>(0);
+  const isMounted = useRef(false);
 
   const increaseBy = (amount: number) => {
-    const newCounter = Math.max(counter + amount, 0)
+    let newCounter = Math.max(counter + amount, 0);
+
+    if (initialValues?.maxCount && newCounter > initialValues.maxCount) return;
+
+    // if (initialValues?.maxCount) {
+    //   newCounter = Math.min(newCounter, initialValues.maxCount);
+    // }
+
     setCounter(newCounter);
     onChange && onChange({ value: newCounter, product });
-  }
+  };
 
   useEffect(() => {
-    setCounter(initialCounter);
-  }, [initialCounter]);
+    if (!isMounted.current) return;
+    setCounter(initialValues?.count || initialCounter);
+  }, [initialCounter, initialValues?.count]);
+
+  useEffect(() => {
+    isMounted.current = true;
+  }, []);
 
   return {
     counter,
-    increaseBy
-  }
-}
+    increaseBy,
+  };
+};
