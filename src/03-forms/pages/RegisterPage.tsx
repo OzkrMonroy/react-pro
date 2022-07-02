@@ -1,26 +1,19 @@
 import "../styles/styles.css";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { FormEvent } from "react";
+import { useForm } from "03-forms/hooks/useForm";
 
 export const RegisterPage = () => {
-  const [registerData, setRegisterData] = useState({
-    email: "",
-    name: "",
-    password: "",
-    password2: "",
-  });
-
-  const { email, name, password, password2 } = registerData;
-
-  const onChange = (ev: ChangeEvent<HTMLInputElement>) => {
-    setRegisterData({
-      ...registerData,
-      [ev.target.name]: ev.target.value,
+  const { name, email, password, password2, formData, onChange, resetForm } =
+    useForm({
+      email: "",
+      name: "",
+      password: "",
+      password2: "",
     });
-  };
 
   const onSubmit = (ev: FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
-    console.log(registerData);
+    console.log(formData);
   };
 
   return (
@@ -57,6 +50,9 @@ export const RegisterPage = () => {
         />
 
         <button type="submit">Register</button>
+        <button type="button" onClick={resetForm}>
+          Reset
+        </button>
       </form>
     </div>
   );
