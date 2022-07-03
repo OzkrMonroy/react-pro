@@ -27,6 +27,13 @@ export const FormikComponents = () => {
           email: Yup.string()
             .email("Check the email format")
             .required("required"),
+          terms: Yup.boolean().oneOf(
+            [true],
+            "Must accept the terms and conditions"
+          ),
+          jobType: Yup.string()
+            .required("Required")
+            .notOneOf(["it-jr"], "The option is not allow."),
         })}
       >
         {(formik) => (
@@ -42,6 +49,15 @@ export const FormikComponents = () => {
             <label htmlFor="email">Email</label>
             <Field name="email" type="email" />
             <ErrorMessage name="email" component="span" />
+
+            <label htmlFor="jobType">Job type</label>
+            <Field name="jobType" as="select">
+              <option value="">Select</option>
+              <option value="engineer">Engineer</option>
+              <option value="designer">Designer</option>
+              <option value="it-jr">IT jr.</option>
+            </Field>
+            <ErrorMessage name="jobType" component="span" />
 
             <label>
               Terms and conditions
