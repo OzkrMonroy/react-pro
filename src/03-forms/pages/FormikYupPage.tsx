@@ -1,43 +1,9 @@
-import { useFormik, FormikErrors } from "formik";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import "../styles/styles.css";
 
-interface FormValues {
-  firstName: string;
-  lastName: string;
-  email: string;
-}
-
-export const FormikBasicPage = () => {
-  const validate = ({ firstName, lastName, email }: FormValues) => {
-    const errors: FormikErrors<FormValues> = {};
-
-    if (!firstName) {
-      errors.firstName = "Required";
-    } else if (firstName.length >= 15) {
-      errors.firstName = "Must be 15 characters or less";
-    }
-    if (!lastName) {
-      errors.lastName = "Required";
-    } else if (lastName.length >= 10) {
-      errors.lastName = "Must be 10 characters or less";
-    }
-    if (!email) {
-      errors.email = "Required";
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
-      errors.email = "Invalid email address";
-    }
-
-    return errors;
-  };
-
-  const {
-    values: { firstName, lastName, email },
-    errors,
-    touched,
-    handleChange,
-    handleSubmit,
-    handleBlur,
-  } = useFormik({
+export const FormikYupPage = () => {
+  const { errors, touched, handleSubmit, getFieldProps } = useFormik({
     initialValues: {
       firstName: "",
       lastName: "",
@@ -46,43 +12,33 @@ export const FormikBasicPage = () => {
     onSubmit: (values) => {
       console.log(values);
     },
-    validate,
+    validationSchema: Yup.object({
+      firstName: Yup.string()
+        .max(15, "Must be 15 characters or less")
+        .required("Required"),
+      lastName: Yup.string()
+        .max(10, "Must be 10 characters or less")
+        .required("Required"),
+      email: Yup.string().email("Check the email format").required("required"),
+    }),
   });
 
   return (
     <div>
       <h1>Formik basic tutorial</h1>
-      <form noValidate onSubmit={handleSubmit}>
+      <form noValidate onSubmit={handleSubmit} autoComplete="off">
         <label htmlFor="firstName">First Name</label>
-        <input
-          type="text"
-          name="firstName"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={firstName}
-        />
+        <input type="text" {...getFieldProps("firstName")} />
         {touched.firstName && errors.firstName && (
           <span>{errors.firstName}</span>
         )}
 
         <label htmlFor="lastName">Last Name</label>
-        <input
-          type="text"
-          name="lastName"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={lastName}
-        />
+        <input type="text" {...getFieldProps("lastName")} />
         {touched.lastName && errors.lastName && <span>{errors.lastName}</span>}
 
         <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          name="email"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={email}
-        />
+        <input type="email" {...getFieldProps("email")} />
         {touched.email && errors.email && <span>{errors.email}</span>}
 
         <button type="submit">Submit</button>
