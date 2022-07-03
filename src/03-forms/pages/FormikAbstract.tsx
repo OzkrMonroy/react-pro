@@ -1,11 +1,12 @@
+import { MyCustomInputText } from "03-forms/components/MyCustomInputText";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import "../styles/styles.css";
 
-export const FormikComponents = () => {
+export const FormikAbstract = () => {
   return (
     <div>
-      <h1>Formik components tutorial</h1>
+      <h1>Formik abstract tutorial</h1>
       <Formik
         initialValues={{
           firstName: "",
@@ -38,17 +39,22 @@ export const FormikComponents = () => {
       >
         {(formik) => (
           <Form>
-            <label htmlFor="firstName">First Name</label>
-            <Field name="firstName" type="text" />
-            <ErrorMessage name="firstName" component="span" />
-
-            <label htmlFor="lastName">Last Name</label>
-            <Field name="lastName" type="text" />
-            <ErrorMessage name="lastName" component="span" />
-
-            <label htmlFor="email">Email</label>
-            <Field name="email" type="email" />
-            <ErrorMessage name="email" component="span" />
+            <MyCustomInputText
+              name={"firstName"}
+              label={"First Name"}
+              placeholder={"First name"}
+            />
+            <MyCustomInputText
+              name={"lastName"}
+              label={"Last Name"}
+              placeholder={"Last name"}
+            />
+            <MyCustomInputText
+              name={"email"}
+              label={"Email"}
+              placeholder={"email@example.com"}
+              type="email"
+            />
 
             <label htmlFor="jobType">Job type</label>
             <Field name="jobType" as="select">
