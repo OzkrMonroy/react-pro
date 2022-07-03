@@ -11,6 +11,8 @@ export const FormikComponents = () => {
           firstName: "",
           lastName: "",
           email: "",
+          terms: false,
+          jobType: "",
         }}
         onSubmit={(values) => {
           console.log(values);
@@ -30,16 +32,22 @@ export const FormikComponents = () => {
         {(formik) => (
           <Form>
             <label htmlFor="firstName">First Name</label>
-            <Field name="firstName" />
+            <Field name="firstName" type="text" />
             <ErrorMessage name="firstName" component="span" />
 
             <label htmlFor="lastName">Last Name</label>
-            <Field name="lastName" />
+            <Field name="lastName" type="text" />
             <ErrorMessage name="lastName" component="span" />
 
             <label htmlFor="email">Email</label>
-            <Field name="email" />
+            <Field name="email" type="email" />
             <ErrorMessage name="email" component="span" />
+
+            <label>
+              Terms and conditions
+              <Field name="terms" type="checkbox" />
+            </label>
+            <ErrorMessage name="terms" component="span" />
 
             <button type="submit">Submit</button>
           </Form>
