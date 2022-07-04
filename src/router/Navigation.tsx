@@ -10,6 +10,7 @@ import {
   FormikBasicPage,
   FormikComponents,
   FormikYupPage,
+  RegisterFormikPage,
   RegisterPage,
 } from "03-forms/pages";
 import logo from "../logo.svg";
@@ -27,6 +28,14 @@ export const Navigation = () => {
                 className={({ isActive }) => (isActive ? "nav-active" : "")}
               >
                 Register page
+              </NavLink>{" "}
+            </li>
+            <li>
+              <NavLink
+                to="/register-formik"
+                className={({ isActive }) => (isActive ? "nav-active" : "")}
+              >
+                Register formik page
               </NavLink>{" "}
             </li>
             <li>
@@ -66,6 +75,7 @@ export const Navigation = () => {
 
         <Routes>
           <Route path="register" element={<RegisterPage />} />
+          <Route path="register-formik" element={<RegisterFormikPage />} />
           <Route path="formik-basic" element={<FormikBasicPage />} />
           <Route path="formik-yup" element={<FormikYupPage />} />
           <Route path="formik-components" element={<FormikComponents />} />
