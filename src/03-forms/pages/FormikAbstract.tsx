@@ -1,4 +1,5 @@
 import { MyCustomInputText } from "03-forms/components/MyCustomInputText";
+import { MyCustomSelect } from "03-forms/components/MyCustomSelect";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import "../styles/styles.css";
@@ -56,14 +57,12 @@ export const FormikAbstract = () => {
               type="email"
             />
 
-            <label htmlFor="jobType">Job type</label>
-            <Field name="jobType" as="select">
+            <MyCustomSelect name="jobType" label="Job type">
               <option value="">Select</option>
               <option value="engineer">Engineer</option>
               <option value="designer">Designer</option>
               <option value="it-jr">IT jr.</option>
-            </Field>
-            <ErrorMessage name="jobType" component="span" />
+            </MyCustomSelect>
 
             <label>
               Terms and conditions
