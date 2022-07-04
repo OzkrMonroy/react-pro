@@ -1,6 +1,9 @@
-import { MyCustomInputText } from "03-forms/components/MyCustomInputText";
-import { MyCustomSelect } from "03-forms/components/MyCustomSelect";
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import {
+  MyCustomCheckbox,
+  MyCustomInputText,
+  MyCustomSelect,
+} from "03-forms/components";
+import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import "../styles/styles.css";
 
@@ -64,11 +67,7 @@ export const FormikAbstract = () => {
               <option value="it-jr">IT jr.</option>
             </MyCustomSelect>
 
-            <label>
-              Terms and conditions
-              <Field name="terms" type="checkbox" />
-            </label>
-            <ErrorMessage name="terms" component="span" />
+            <MyCustomCheckbox name="terms" label="Terms & conditions" />
 
             <button type="submit">Submit</button>
           </Form>
