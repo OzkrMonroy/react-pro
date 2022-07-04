@@ -1,0 +1,51 @@
+[
+  {
+    "type": "text",
+    "name": "firstName",
+    "placeholder": "Juanito",
+    "label": "First name",
+    "value": "",
+    "validations": [
+      { "type": "required", "message": "First name is required" },
+      { "type": "minLength", "value": 5, "message": "Min length is 5" }
+    ]
+  },
+  {
+    "type": "text",
+    "name": "lastName",
+    "placeholder": "Solís",
+    "label": "Last name",
+    "value": ""
+  },
+  {
+    "type": "email",
+    "name": "email",
+    "placeholder": "something@example.com",
+    "label": "Email",
+    "value": "",
+    "validations": [
+      { "type": "required", "message": "Email is required" },
+      { "type": "email", "message": "Email format is incorrect" }
+    ]
+  },
+  {
+    "type": "select",
+    "name": "favoriteGame",
+    "label": "Favorite game",
+    "value": "",
+    "options": [
+      {
+        "id": 1,
+        "label": "Super Mario"
+      },
+      {
+        "id": 2,
+        "label": "Among us"
+      },
+      {
+        "id": 3,
+        "label": "Plants vs zombies"
+      }
+    ]
+  }
+]

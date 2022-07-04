@@ -1,6 +1,4 @@
 import "../styles/styles.css";
-import { FormEvent } from "react";
-import { useForm } from "03-forms/hooks/useForm";
 import { Form, Formik } from "formik";
 import { MyCustomInputText } from "03-forms/components";
 import * as Yup from "yup";
